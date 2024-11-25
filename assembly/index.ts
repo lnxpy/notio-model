@@ -11,7 +11,7 @@ export function summarizeArticle(content: string, language: string): string {
   const model = models.getModel<OpenAIChatModel>("base-model");
   const input = model.createInput([
     new SystemMessage(
-      `summarize the input markdown and return only the ${language} summarized text in the form of markdown`,
+      `summarize the input markdown and return only the summarized text in the form of markdown in ${language}. Ignore code blocks in translations.`,
     ),
     new UserMessage(content),
   ]);
@@ -26,7 +26,7 @@ export function concludeArticle(content: string, language: string): string {
   const model = models.getModel<OpenAIChatModel>("base-model");
   const input = model.createInput([
     new SystemMessage(
-      `conclude the input markdown and return only the ${language} version of the summarized text in the form of markdown`,
+      `conclude the input markdown and return only the summarized text in the form of markdown in ${language}. Ignore code blocks in translations.`,
     ),
     new UserMessage(content),
   ]);
